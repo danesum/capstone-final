@@ -69,7 +69,7 @@ function Login({ user, setUser }) {
       content in the messages state variable */}
       {messages.length > 0 && (
         <Row className="mt-3">
-          <Alert key="primary" variant="primary">
+          <Alert key="primary" variant="primary" dismissible>
             {messages}
           </Alert>
         </Row>

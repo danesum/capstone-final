@@ -41,6 +41,7 @@ exports.addEvent = async function (req, res) {
   const newEvent = new Event({
     eventName: req.body.eventName,
     eventImg: req.body.eventImg,
+    ticketURL: req.body.ticketURL,
     date: req.body.date,
     time: req.body.time,
     price: req.body.price,
@@ -65,9 +66,10 @@ exports.updateEvent = async function (req, res) {
       {
         eventName: req.body.eventName,
         eventImg: req.body.eventImg,
+        ticketURL: req.body.ticketURL,
         date: req.body.date,
         time: req.body.time,
-        price: req.body.price,
+        price: Number(req.body.price),
       }
     );
     return res.send({ message: "Updated task successfully." });

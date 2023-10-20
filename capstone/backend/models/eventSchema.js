@@ -12,6 +12,10 @@ let EventSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    ticketURL: {
+      type: String,
+      required: true,
+    },
     date: {
       type: String,
       required: true,

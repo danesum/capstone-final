@@ -5,7 +5,9 @@ import { Container, Button, Row, Col, Card, Alert } from "react-bootstrap";
 function Admin({ user, setUser }) {
   //define local state
   const [eventData, setEventData] = useState([]);
-  const [messages, setMessages] = useState("");
+  const [messages, setMessages] = useState(
+    `How to Use: Browse our list of available events below and click "Get Tickets" to be redirected to that event's ticket purchase page.`
+  );
 
   //function to get all data from the event storage
   //database
@@ -40,7 +42,7 @@ function Admin({ user, setUser }) {
       {/* hidden container for messages */}
       {messages.length > 0 && (
         <Row className="mt-3">
-          <Alert key="primary" variant="primary">
+          <Alert key="primary" variant="primary" dismissible>
             {messages}
           </Alert>
         </Row>
@@ -52,8 +54,12 @@ function Admin({ user, setUser }) {
           <h1>Upcoming Events</h1>
         </Row>
         <Row>
-          {eventData.map((event) => (
-            <Card className="my-2 mx-auto p-0" style={{ width: "18rem" }}>
+          {eventData.map((event, i) => (
+            <Card
+              key={i}
+              className="my-2 mx-auto p-0"
+              style={{ width: "18rem" }}
+            >
               <Card.Img
                 variant="top"
                 style={{ height: "100%" }}
@@ -69,7 +75,14 @@ function Admin({ user, setUser }) {
                   <strong>Time:</strong> {event.time}
                 </Card.Text>
                 <Row>
-                  <Button variant="primary">Get Tickets</Button>
+                  <a
+                    href={event.ticketURL}
+                    target="_blank"
+                    class="btn btn-primary"
+                    role="button"
+                  >
+                    Get Tickets
+                  </a>
                 </Row>
               </Card.Body>
             </Card>
